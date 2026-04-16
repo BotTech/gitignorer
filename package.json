@@ -1,0 +1,25 @@
+{
+  "name": "gitignore",
+  "version": "1.0.0",
+  "description": "Generates .gitignore files from the templates in https://github.com/github/gitignore.",
+  "keywords": [
+    ".gitignore",
+    "cli",
+    "github/gitignore"
+  ],
+  "homepage": "https://github.com/BotTech/gitignore#readme",
+  "bugs": {
+    "url": "https://github.com/BotTech/gitignore/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BotTech/gitignore.git"
+  },
+  "license": "MIT",
+  "author": "Jason Pickens",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo todo"
+  }
+}
