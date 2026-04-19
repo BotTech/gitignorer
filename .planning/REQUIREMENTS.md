@@ -125,9 +125,76 @@
 
 ## Traceability
 
-| Phase | Requirements |
-|-------|--------------|
-| TBD | Mapped during roadmap creation |
+| Requirement | Phase | Status |
+|-------------|-------|--------|
+| CLI-01 | Phase 1 | Pending |
+| CLI-02 | Phase 1 | Pending |
+| CLI-03 | Phase 1 | Pending |
+| CLI-04 | Phase 1 | Pending |
+| CLI-05 | Phase 1 | Pending |
+| CLI-06 | Phase 1 | Pending |
+| CLI-07 | Phase 1 | Pending |
+| INPUT-01 | Phase 1 | Pending |
+| INPUT-02 | Phase 1 | Pending |
+| INPUT-03 | Phase 1 | Pending |
+| INPUT-04 | Phase 1 | Pending |
+| INPUT-05 | Phase 1 | Pending |
+| INPUT-06 | Phase 1 | Pending |
+| OUTPUT-01 | Phase 1 | Pending |
+| OUTPUT-02 | Phase 1 | Pending |
+| OUTPUT-03 | Phase 1 | Pending |
+| OUTPUT-04 | Phase 1 | Pending |
+| OUTPUT-05 | Phase 1 | Pending |
+| OUTPUT-06 | Phase 1 | Pending |
+| OUTPUT-07 | Phase 1 | Pending |
+| OUTPUT-08 | Phase 1 | Pending |
+| SAFE-01 | Phase 1 | Pending |
+| SAFE-02 | Phase 1 | Pending |
+| SAFE-03 | Phase 2 | Pending |
+| SAFE-04 | Phase 2 | Pending |
+| SAFE-05 | Phase 2 | Pending |
+| STRUCT-01 | Phase 1 | Pending |
+| STRUCT-02 | Phase 1 | Pending |
+| STRUCT-03 | Phase 1 | Pending |
+| TMPL-01 | Phase 2 | Pending |
+| TMPL-02 | Phase 2 | Pending |
+| TMPL-03 | Phase 2 | Pending |
+| TMPL-04 | Phase 2 | Pending |
+| TMPL-05 | Phase 2 | Pending |
+| TMPL-06 | Phase 2 | Pending |
+| CMD-04 | Phase 2 | Pending |
+| CMD-01 | Phase 3 | Pending |
+| CMD-02 | Phase 3 | Pending |
+| CMD-03 | Phase 3 | Pending |
+| DETECT-01 | Phase 3 | Pending |
+| DETECT-02 | Phase 3 | Pending |
+| DETECT-03 | Phase 3 | Pending |
+| DETECT-04 | Phase 3 | Pending |
+| DETECT-05 | Phase 3 | Pending |
+| DETECT-06 | Phase 3 | Pending |
+| INTERACT-01 | Phase 3 | Pending |
+| INTERACT-02 | Phase 3 | Pending |
+| INTERACT-03 | Phase 3 | Pending |
+| INTERACT-04 | Phase 3 | Pending |
+| INTERACT-05 | Phase 3 | Pending |
+| COMPOSE-01 | Phase 3 | Pending |
+| COMPOSE-02 | Phase 3 | Pending |
+| COMPOSE-03 | Phase 3 | Pending |
+| MERGE-01 | Phase 3 | Pending |
+| MERGE-02 | Phase 3 | Pending |
+| MERGE-03 | Phase 3 | Pending |
+| MERGE-04 | Phase 3 | Pending |
+| MERGE-05 | Phase 3 | Pending |
+| MERGE-06 | Phase 3 | Pending |
+| MERGE-07 | Phase 3 | Pending |
+| MERGE-08 | Phase 3 | Pending |
+| CMD-05 | Phase 4 | Pending |
+| CMD-06 | Phase 4 | Pending |
+| CMD-07 | Phase 4 | Pending |
+| UPDATE-01 | Phase 4 | Pending |
+| UPDATE-02 | Phase 4 | Pending |
+| UPDATE-03 | Phase 4 | Pending |
+| UPDATE-04 | Phase 4 | Pending |
 
 ---
-*Last updated: 2026-04-19 after research*
+*Last updated: 2026-04-19 after roadmap creation*
