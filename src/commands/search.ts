@@ -1,0 +1,33 @@
+/**
+ * Search command factory.
+ *
+ * Per D-04: Search command with stub implementation.
+ */
+
+import { Command } from 'commander';
+import { getCommonFlags, applyCommonFlags } from '../cli/flags.js';
+import { searchInputSchema } from '../schema/input.js';
+
+/**
+ * Creates the search command.
+ */
+export function createSearchCommand(): Command {
+  const cmd = new Command('search');
+  cmd.description('Search available templates');
+
+  // Apply common flags with output option
+  applyCommonFlags(cmd, { output: 'stdout' as any });
+
+  // Add query argument
+  cmd.argument('<query>', 'Search query');
+
+  // Stub action handler
+  cmd.action(async (query, options) => {
+    const flags = getCommonFlags(options);
+    searchInputSchema.parse({ query, ...flags });
+    console.log('Not yet implemented');
+    process.exit(0);
+  });
+
+  return cmd;
+}

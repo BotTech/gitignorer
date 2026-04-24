@@ -1,12 +1,12 @@
 /**
- * STUB: Commander.js program configuration.
+ * Commander.js program configuration with I/O separation.
  *
- * This stub is created in Plan 01 to satisfy imports in bin.ts.
- * Full implementation happens in Plan 03.
+ * Per CONTEXT.md D-04: All 8 commands registered with stub implementations.
+ * Per CONTEXT.md D-06: configureOutput separates stdout/stderr channels.
  */
 import { Command } from 'commander';
 /**
- * Creates the Commander.js program (stub implementation).
+ * Creates the Commander.js program with all commands registered.
  */
 export declare function createProgram(): Command;
 //# sourceMappingURL=program.d.ts.map
