@@ -34,7 +34,7 @@ The research confirms that the chosen technology stack (Commander.js 13.x, @clac
 - **D-03:** Separate entry points: `src/bin.ts` for CLI binary (#!/usr/bin/env node), `src/index.ts` for library exports (programmatic API)
 - **D-04:** All 8 commands stubbed now (help, generate, scan, list, search, update, examples, schema). Later-phase commands get stub handlers
 - **D-05:** Each command in `src/commands/` exports a factory function that returns a configured Commander command object
-- **D-06:** Common flags (`--output`, `--input`, `--yes`, `--dry-run`) defined once in shared module and applied to commands that accept them
+- **D-06:** Common flags (`--output`, `--input`, `--yes`, `--dry-run`) defined once in shared module and applied to commands that accept them. Per-command flags defined in the command file
 - **D-07:** Mode resolved once at startup as enum (INTERACTIVE, NON_INTERACTIVE, AGENT) from TTY state + flags
 - **D-08:** Three-mode behavior matrix (see CONTEXT.md for full table)
 - **D-09:** `@clack/prompts` used for ALL human-facing output. Auto-degrades to plain text when no TTY
@@ -158,7 +158,7 @@ npm install simple-git@^3.27.0 fuse.js@^8.0.0 ndjson@^2.0.0 cli-table3@^0.7.0
 │  Command Registrations:                                         │
 │    ┌────────────┐  ┌────────────┐  ┌────────────┐              │
 │    │ help       │  │ generate   │  │ scan       │  ...         │
-│    │ (stub)     │  │ (stub)     │  │ (stub)     │              │
+│    │ (built-in) │  │ (stub)     │  │ (stub)     │              │
 │    └────────────┘  └────────────┘  └────────────┘              │
 └─────────────────────────────────────────────────────────────────┘
                                   │
@@ -237,7 +237,6 @@ src/
 │   ├── flags.ts        # Common flag definitions
 │   └── error-handler.ts # Top-level error catch and exit code mapping
 ├── commands/
-│   ├── help.ts         # Help command (built-in, possibly customized)
 │   ├── generate.ts     # Generate .gitignore (stub in Phase 1)
 │   ├── scan.ts         # Scan repo for templates (stub in Phase 1)
 │   ├── list.ts         # List available templates (stub in Phase 1)
@@ -345,7 +344,7 @@ export const dangerousPatternSchema = z.string().refine(
 export class ValidationError extends Error {
   readonly exitCode = 1;
   readonly code = 'VALIDATION_ERROR';
-  
+
   constructor(message: string, public readonly issues: z.ZodIssue[]) {
     super(message);
     this.name = 'ValidationError';
@@ -363,7 +362,7 @@ export class ValidationError extends Error {
 export class GitError extends Error {
   readonly exitCode = 2;
   readonly code = 'GIT_ERROR';
-  
+
   constructor(message: string, public readonly details?: unknown) {
     super(message);
     this.name = 'GitError';
@@ -409,7 +408,7 @@ import { getCommonFlags } from '../cli/flags.js';
 
 export function createGenerateCommand(): Command {
   const cmd = new Command('generate');
-  
+
   cmd
     .description('Generate .gitignore file (default command)')
     .option('--output <format>', 'Output format', 'stdout')
@@ -421,7 +420,7 @@ export function createGenerateCommand(): Command {
       const flags = getCommonFlags(options);
       // Command implementation
     });
-  
+
   return cmd;
 }
 ```
@@ -456,13 +455,13 @@ export function createGenerateCommand(): Command {
 ### Pitfall 1: Mixing stdout and stderr
 **What goes wrong:** Data written to stdout gets mixed with progress messages, breaking pipe compatibility and JSON parsing in agent mode.
 **Why it happens:** Developers use `console.log()` everywhere without considering which stream the output should go to.
-**How to avoid:** 
+**How to avoid:**
 - Use Commander's `configureOutput()` to customize write routines
 - Use @clack/prompts `log` methods (they write to stderr)
 - Never use `console.log()` for data — only for debugging
 - In agent mode, ensure ALL UI goes to stderr, only JSON to stdout
 
-**Warning signs:** 
+**Warning signs:**
 - Piped commands fail with "unexpected token" errors
 - JSON parsers can't parse output because of mixed content
 - Agent mode returns malformed JSON
@@ -619,13 +618,13 @@ async function parseStdinJSON<T>(): Promise<T | null> {
   }
 
   const chunks: Buffer[] = [];
-  
+
   for await (const chunk of process.stdin) {
     chunks.push(chunk);
   }
 
   const data = Buffer.concat(chunks).toString('utf-8').trim();
-  
+
   if (!data) {
     return null;
   }
@@ -648,22 +647,22 @@ export function handleTopLevelError(err: unknown): never {
     console.error(JSON.stringify(err.toJSON()));
     process.exit(1);
   }
-  
+
   if (err instanceof GitError) {
     console.error(JSON.stringify(err.toJSON()));
     process.exit(2);
   }
-  
+
   if (err instanceof FsError) {
     console.error(JSON.stringify(err.toJSON()));
     process.exit(3);
   }
-  
+
   if (err instanceof BusinessError) {
     console.error(JSON.stringify(err.toJSON()));
     process.exit(4);
   }
-  
+
   // Unknown error
   console.error(JSON.stringify({
     error: 'UNKNOWN_ERROR',
@@ -702,22 +701,19 @@ export function handleTopLevelError(err: unknown): never {
 
 **If this table is empty:** All claims in this research were verified or cited — no user confirmation needed.
 
-## Open Questions
+## Open Questions (RESOLVED)
 
-1. **Question:** Should the CLI support a `--quiet` flag to suppress all non-error output?
-   - What we know: Phase 1 requirements specify `--output` flags but not `--quiet`
-   - What's unclear: Whether `--quiet` is needed for scripting scenarios
-   - Recommendation: Defer to Phase 4 (update/examples commands) when we have real usage patterns
+**RESOLVED - Q1:** Should the CLI support a `--quiet` flag to suppress all non-error output?
+- **Resolution:** No. Phase 1 requirements specify `--output` flags which control output format and destination. The `--output json` flag already suppresses human-readable messages. A separate `--quiet` flag would create redundancy. Use `--output json` for scripted scenarios that need only data.
+- **Implementation:** No `--quiet` flag needed. Agent mode (`--input json` + `--output json`) provides machine-only interface.
 
-2. **Question:** How should the CLI handle conflicting flags (e.g., `--output json --output stdout`)?
-   - What we know: Commander.js takes the last flag value by default
-   - What's unclear: Whether we need custom validation for flag conflicts
-   - Recommendation: Start with Commander.js default, add validation if users report confusion
+**RESOLVED - Q2:** How should the CLI handle conflicting flags (e.g., `--output json --output stdout`)?
+- **Resolution:** Use Commander.js default behavior (last flag wins). This is standard CLI behavior and matches user expectations. Custom validation would add complexity without clear benefit.
+- **Implementation:** Document in CLI help that repeated flags use the last value. No additional validation needed.
 
-3. **Question:** Should agent mode support colors/styling in stderr messages?
-   - What we know: CONTEXT.md says "Agent mode is deliberately unstyled: JSON in, JSON out"
-   - What's unclear: Whether stderr errors in agent mode should support ANSI colors
-   - Recommendation: Keep agent mode completely plain (no ANSI codes) for machine readability
+**RESOLVED - Q3:** Should agent mode support colors/styling in stderr messages?
+- **Resolution:** No. Agent mode is deliberately unstyled for machine readability. All stderr output in agent mode should be plain JSON (errors) or plain text (progress events). No ANSI codes.
+- **Implementation:** Agent mode formatters emit plain JSON/NDJSON only. Human formatters (@clack/prompts) only used in INTERACTIVE and NON_INTERACTIVE modes.
 
 ## Environment Availability
 
