@@ -19,12 +19,13 @@
   3. User can run commands with `--input json` for structured input and `--output json` for structured output
   4. All inputs are validated via Zod schemas and dangerous patterns are rejected
   5. Data writes to stdout and messages write to stderr (channels never mixed)
-**Plans:** 3 plans
+**Plans:** 4 plans
 
 **Plan List:**
 - [ ] 01-01-PLAN.md — Core infrastructure (mode resolution, error handling, project configuration)
 - [ ] 01-02-PLAN.md — Validation & parsing (Zod schemas, input parsers, dangerous pattern rejection)
-- [ ] 01-03-PLAN.md — Command framework (program setup, command factories, formatters, library exports)
+- [ ] 01-03-PLAN.md — Command framework (program setup, all 8 command factories per D-04, library exports)
+- [ ] 01-04-PLAN.md — Output formatters (human, JSON, NDJSON, dry-run) wired to commands
 
 ### Phase 2: Template Management
 **Goal:** CLI clones, caches, and serves github/gitignore templates reliably
@@ -66,11 +67,11 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Infrastructure | 0/3 | Ready to execute | - |
+| 1. Foundation & Infrastructure | 0/4 | Ready to execute | - |
 | 2. Template Management | 0/3 | Not started | - |
 | 3. Core Features | 0/3 | Not started | - |
 | 4. Polish & Safety | 0/3 | Not started | - |
 
 ---
 *Created: 2026-04-19*
-*Updated: 2026-04-22 (Phase 1 plans created)*
+*Updated: 2026-04-22 (Phase 1 plans revised based on checker feedback)*
