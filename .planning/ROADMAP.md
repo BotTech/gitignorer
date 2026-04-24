@@ -2,7 +2,7 @@
 
 ## Phases
 
-- [ ] **Phase 1: Foundation & Infrastructure** - Core CLI framework with three execution modes, validation, and I/O handling
+- [x] **Phase 1: Foundation & Infrastructure** - Core CLI framework with three execution modes, validation, and I/O handling - *Completed 2026-04-24*
 - [ ] **Phase 2: Template Management** - Git clone, cache management, and template operations
 - [ ] **Phase 3: Core Features** - Auto-detection, interactive selection, and smart merge
 - [ ] **Phase 4: Polish & Safety** - Update workflow, safety features, and error handling
@@ -22,10 +22,10 @@
 **Plans:** 4 plans
 
 **Plan List:**
-- [ ] 01-01-PLAN.md — Core infrastructure (mode resolution, error handling, project configuration)
-- [ ] 01-02-PLAN.md — Validation & parsing (Zod schemas, input parsers, dangerous pattern rejection)
-- [ ] 01-03-PLAN.md — Command framework (program setup, all 8 command factories per D-04, library exports)
-- [ ] 01-04-PLAN.md — Output formatters (human, JSON, NDJSON, dry-run) wired to commands
+- [x] 01-01-PLAN.md — Core infrastructure (mode resolution, error handling, project configuration)
+- [x] 01-02-PLAN.md — Validation & parsing (Zod schemas, input parsers, dangerous pattern rejection)
+- [x] 01-03-PLAN.md — Command framework (program setup, all 8 command factories per D-04, library exports)
+- [x] 01-04-PLAN.md — Output formatters (human, JSON, NDJSON, dry-run) wired to commands
 
 ### Phase 2: Template Management
 **Goal:** CLI clones, caches, and serves github/gitignore templates reliably
@@ -67,7 +67,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Infrastructure | 0/4 | Ready to execute | - |
+| 1. Foundation & Infrastructure | 4/4 | Complete | 2026-04-24 |
 | 2. Template Management | 0/3 | Not started | - |
 | 3. Core Features | 0/3 | Not started | - |
 | 4. Polish & Safety | 0/3 | Not started | - |
