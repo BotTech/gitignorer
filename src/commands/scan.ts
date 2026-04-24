@@ -7,6 +7,7 @@
 import { Command } from 'commander';
 import { getCommonFlags, applyCommonFlags } from '../cli/flags.js';
 import { scanInputSchema } from '../schema/input.js';
+import { formatHuman } from '../formatters/human.js';
 
 /**
  * Creates the scan command.
@@ -25,7 +26,7 @@ export function createScanCommand(): Command {
   cmd.action(async (options) => {
     const flags = getCommonFlags(options);
     scanInputSchema.parse({ cwd: options.cwd, ...flags });
-    console.log('Not yet implemented');
+    await formatHuman({ message: 'Not yet implemented' });
     process.exit(0);
   });
 

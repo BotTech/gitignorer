@@ -6,6 +6,7 @@
 import { Command } from 'commander';
 import { getCommonFlags, applyCommonFlags } from '../cli/flags.js';
 import { generateInputSchema } from '../schema/input.js';
+import { formatHuman } from '../formatters/human.js';
 /**
  * Creates the generate command.
  */
@@ -20,7 +21,7 @@ export function createGenerateCommand() {
     cmd.action(async (templates, options) => {
         const flags = getCommonFlags(options);
         generateInputSchema.parse({ templates, ...flags });
-        console.log('Not yet implemented');
+        await formatHuman({ message: 'Not yet implemented' });
         process.exit(0);
     });
     return cmd;

@@ -5,6 +5,7 @@
  */
 
 import { Command } from 'commander';
+import { formatHuman } from '../formatters/human.js';
 
 /**
  * Creates the examples command.
@@ -17,8 +18,8 @@ export function createExamplesCommand(): Command {
   cmd.argument('<command>', 'Command to show examples for');
 
   // Stub action handler
-  cmd.action(() => {
-    console.log('Not yet implemented');
+  cmd.action(async () => {
+    await formatHuman({ message: 'Not yet implemented' });
     process.exit(0);
   });
 

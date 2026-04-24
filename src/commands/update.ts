@@ -6,6 +6,7 @@
 
 import { Command } from 'commander';
 import { getCommonFlags, applyCommonFlags } from '../cli/flags.js';
+import { formatHuman } from '../formatters/human.js';
 
 /**
  * Creates the update command.
@@ -20,7 +21,7 @@ export function createUpdateCommand(): Command {
   // Stub action handler
   cmd.action(async (options) => {
     const flags = getCommonFlags(options);
-    console.log('Not yet implemented', flags);
+    await formatHuman({ message: 'Not yet implemented', flags });
     process.exit(0);
   });
 

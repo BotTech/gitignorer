@@ -6,6 +6,7 @@
  */
 
 import { Command } from 'commander';
+import { formatHuman } from '../formatters/human.js';
 
 /**
  * Creates the help command.
@@ -17,8 +18,8 @@ export function createHelpCommand(): Command {
   const cmd = new Command('help');
   cmd.description('Show help information');
   cmd.argument('[command]', 'Command to show help for');
-  cmd.action(() => {
-    console.log('Not yet implemented');
+  cmd.action(async () => {
+    await formatHuman({ message: 'Not yet implemented' });
     process.exit(0);
   });
   return cmd;

@@ -6,6 +6,7 @@
 import { Command } from 'commander';
 import { getCommonFlags, applyCommonFlags } from '../cli/flags.js';
 import { searchInputSchema } from '../schema/input.js';
+import { formatHuman } from '../formatters/human.js';
 /**
  * Creates the search command.
  */
@@ -20,7 +21,7 @@ export function createSearchCommand() {
     cmd.action(async (query, options) => {
         const flags = getCommonFlags(options);
         searchInputSchema.parse({ query, ...flags });
-        console.log('Not yet implemented');
+        await formatHuman({ message: 'Not yet implemented' });
         process.exit(0);
     });
     return cmd;

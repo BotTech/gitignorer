@@ -7,6 +7,7 @@
 import { Command } from 'commander';
 import { getCommonFlags, applyCommonFlags } from '../cli/flags.js';
 import { listInputSchema } from '../schema/input.js';
+import { formatHuman } from '../formatters/human.js';
 
 /**
  * Creates the list command.
@@ -22,7 +23,7 @@ export function createListCommand(): Command {
   cmd.action(async (options) => {
     const flags = getCommonFlags(options);
     listInputSchema.parse(flags);
-    console.log('Not yet implemented');
+    await formatHuman({ message: 'Not yet implemented' });
     process.exit(0);
   });
 
