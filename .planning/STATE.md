@@ -58,6 +58,40 @@
 - Named modules only (no utils/)
 - Safety: validate all inputs, reject dangerous patterns
 
+## Verification Debt
+*Tests from previous phases that could not be verified and should be validated in future phases*
+
+### Phase 1 Deferred Tests
+*Cannot test until commands are implemented with actual functionality*
+
+- **Mode Resolution (Agent Mode)** - CLI switches to AGENT mode when --input json flag provided
+  - Status: Deferred to Phase 2 (when `list` command implemented)
+  - Test: Run command with `--input json` and verify structured input/output behavior
+
+- **Structured Output (JSON/NDJSON)** - Commands support --output json and --output ndjson flags
+  - Status: Deferred to Phase 2
+  - Test: Run `list --output json` and verify valid JSON output to stdout
+
+- **Input Validation** - Reject dangerous patterns (path traversal, control chars, query injection)
+  - Status: Deferred to Phase 2
+  - Test: Try `list "../../../etc"` and verify ValidationError thrown
+
+- **Piped JSON Input** - CLI accepts JSON input via stdin without blocking
+  - Status: Deferred to Phase 2
+  - Test: Pipe JSON payload to command and verify it processes correctly
+
+- **stdout/stderr Separation** - Data to stdout, messages to stderr
+  - Status: Deferred to Phase 2
+  - Test: Run command and observe channels are not mixed
+
+- **Dry Run Flag** - Commands support --dry-run flag for preview
+  - Status: Deferred to Phase 2+
+  - Test: Run with `--dry-run` and verify preview shown, no changes made
+
+- **Yes Flag** - Commands support --yes flag to skip confirmations
+  - Status: Deferred to Phase 2+
+  - Test: Run with `--yes` and verify no interactive prompts
+
 ## Session Continuity
 
 **Last Session**: 2026-04-24 - Phase 1 execution complete

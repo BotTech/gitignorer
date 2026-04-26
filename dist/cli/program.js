@@ -5,7 +5,6 @@
  * Per CONTEXT.md D-06: configureOutput separates stdout/stderr channels.
  */
 import { Command } from 'commander';
-import { createHelpCommand } from '../commands/help.js';
 import { createGenerateCommand } from '../commands/generate.js';
 import { createScanCommand } from '../commands/scan.js';
 import { createListCommand } from '../commands/list.js';
@@ -29,8 +28,7 @@ export function createProgram() {
             write(`\x1b[31m${str}\x1b[0m`);
         },
     });
-    // Register all 8 commands (per D-04)
-    program.addCommand(createHelpCommand());
+    // Register commands (help is built-in to Commander.js)
     program.addCommand(createGenerateCommand());
     program.addCommand(createScanCommand());
     program.addCommand(createListCommand());
