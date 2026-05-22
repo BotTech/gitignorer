@@ -1,7 +1,7 @@
 # Codebase Map
 
-Generated: 2026-05-17T07:41:17Z | Files: 28 | Described: 0/28
-<!-- gsd:codebase-meta {"generatedAt":"2026-05-17T07:41:17Z","fingerprint":"a2311eb2a441f0e59ef15786c1f7a3928e971234","fileCount":28,"truncated":false} -->
+Generated: 2026-05-22T06:19:42Z | Files: 28 | Described: 0/28
+<!-- gsd:codebase-meta {"generatedAt":"2026-05-22T06:19:42Z","fingerprint":"a2311eb2a441f0e59ef15786c1f7a3928e971234","fileCount":28,"truncated":false} -->
 
 ### (root)/
 - `CLAUDE.md`
