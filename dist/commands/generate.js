@@ -21,7 +21,7 @@ export function createGenerateCommand() {
     cmd.action(async (templates, options) => {
         const flags = getCommonFlags(options);
         generateInputSchema.parse({ templates, ...flags });
-        await formatHuman({ message: 'Not yet implemented' });
+        await formatHuman({ type: 'info', message: 'Not yet implemented' });
         process.exit(0);
     });
     return cmd;

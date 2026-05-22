@@ -26,7 +26,7 @@ export function createSearchCommand(): Command {
   cmd.action(async (query, options) => {
     const flags = getCommonFlags(options);
     searchInputSchema.parse({ query, ...flags });
-    await formatHuman({ message: 'Not yet implemented' });
+    await formatHuman({ type: 'info', message: 'Not yet implemented' });
     process.exit(0);
   });
 

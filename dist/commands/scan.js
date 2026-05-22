@@ -21,7 +21,7 @@ export function createScanCommand() {
     cmd.action(async (options) => {
         const flags = getCommonFlags(options);
         scanInputSchema.parse({ cwd: options.cwd, ...flags });
-        await formatHuman({ message: 'Not yet implemented' });
+        await formatHuman({ type: 'info', message: 'Not yet implemented' });
         process.exit(0);
     });
     return cmd;

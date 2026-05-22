@@ -1,7 +1,7 @@
 /**
  * Update command factory.
  *
- * Per D-04: Update command with stub implementation.
+ * Updates the local template cache from github/gitignore repository.
  */
 import { Command } from 'commander';
 /**

@@ -15,7 +15,7 @@ export function createExamplesCommand() {
     cmd.argument('<command>', 'Command to show examples for');
     // Stub action handler
     cmd.action(async () => {
-        await formatHuman({ message: 'Not yet implemented' });
+        await formatHuman({ type: 'info', message: 'Not yet implemented' });
         process.exit(0);
     });
     return cmd;

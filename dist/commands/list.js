@@ -19,7 +19,7 @@ export function createListCommand() {
     cmd.action(async (options) => {
         const flags = getCommonFlags(options);
         listInputSchema.parse(flags);
-        await formatHuman({ message: 'Not yet implemented' });
+        await formatHuman({ type: 'info', message: 'Not yet implemented' });
         process.exit(0);
     });
     return cmd;

@@ -15,7 +15,7 @@ export function createSchemaCommand() {
     cmd.argument('<resource>', 'Resource to show schema for');
     // Stub action handler
     cmd.action(async () => {
-        await formatHuman({ message: 'Not yet implemented' });
+        await formatHuman({ type: 'info', message: 'Not yet implemented' });
         process.exit(0);
     });
     return cmd;
